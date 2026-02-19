@@ -11,7 +11,7 @@ class TxtarSyntaxHighlighter : SyntaxHighlighterBase() {
     companion object {
         val HEADER = createTextAttributesKey("TXTAR_HEADER", DefaultLanguageHighlighterColors.KEYWORD)
         val COMMENT = createTextAttributesKey("TXTAR_COMMENT", DefaultLanguageHighlighterColors.BLOCK_COMMENT)
-        val CONTENT = createTextAttributesKey("TXTAR_CONTENT", DefaultLanguageHighlighterColors.TEXT)
+        val CONTENT = createTextAttributesKey("TXTAR_CONTENT", DefaultLanguageHighlighterColors.IDENTIFIER)
         
         private val HEADER_KEYS = arrayOf(HEADER)
         private val COMMENT_KEYS = arrayOf(COMMENT)
