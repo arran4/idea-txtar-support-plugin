@@ -2,7 +2,6 @@ package com.example.txtar
 
 import com.intellij.lexer.Lexer
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
-import com.intellij.openapi.editor.HighlighterColors
 import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase
 import com.intellij.psi.tree.IElementType
@@ -12,7 +11,7 @@ class TxtarSyntaxHighlighter : SyntaxHighlighterBase() {
     companion object {
         val HEADER = createTextAttributesKey("TXTAR_HEADER", DefaultLanguageHighlighterColors.KEYWORD)
         val COMMENT = createTextAttributesKey("TXTAR_COMMENT", DefaultLanguageHighlighterColors.BLOCK_COMMENT)
-        val CONTENT = createTextAttributesKey("TXTAR_CONTENT", HighlighterColors.TEXT)
+        val CONTENT = createTextAttributesKey("TXTAR_CONTENT", DefaultLanguageHighlighterColors.IDENTIFIER)
         
         private val HEADER_KEYS = arrayOf(HEADER)
         private val COMMENT_KEYS = arrayOf(COMMENT)
