@@ -21,7 +21,7 @@ data class TxtarEntry(val headerText: String, val contentText: String) {
     }
 }
 
-class ReorderFilesDialog(project: Project, entries: List<TxtarEntry>) : DialogWrapper(project) {
+class ReorderFilesDialog(project: Project, entries: List<TxtarEntry>) : DialogWrapper(project, true) {
     private val model = CollectionListModel(entries)
     private val list = JBList(model)
 
