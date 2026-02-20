@@ -11,4 +11,5 @@ object TxtarElementTypes {
     
     val COMMENT_BLOCK: IElementType = TxtarTokenType("COMMENT_BLOCK")
     val FILE_CONTENT: IElementType = TxtarTokenType("FILE_CONTENT")
+    val FILE_ENTRY: IElementType = TxtarTokenType("FILE_ENTRY")
 }

@@ -64,4 +64,44 @@ class TxtarLexerTest {
         
         assertNull(lexer.tokenType)
     }
+
+    @Test
+    fun testProblematicCase() {
+        val content = "-- input.txt --\ncontent\n\n-- input.txt,v --\nhead\t1.1;"
+        val lexer = TxtarLexer()
+        lexer.start(content, 0, content.length, 0)
+
+        // Header 1: -- input.txt --
+        assertEquals(TxtarElementTypes.HEADER, lexer.tokenType)
+        var tokenText = content.subSequence(lexer.tokenStart, lexer.tokenEnd).toString()
+        assertEquals("-- input.txt --\n", tokenText)
+        lexer.advance()
+
+        // Content 1: content
+        assertEquals(TxtarElementTypes.CONTENT, lexer.tokenType)
+        tokenText = content.subSequence(lexer.tokenStart, lexer.tokenEnd).toString()
+        assertEquals("content\n", tokenText)
+        lexer.advance()
+
+        // Content 2: Empty line
+        assertEquals(TxtarElementTypes.CONTENT, lexer.tokenType)
+        tokenText = content.subSequence(lexer.tokenStart, lexer.tokenEnd).toString()
+        assertEquals("\n", tokenText)
+        lexer.advance()
+
+        // Header 2: -- input.txt,v --
+        // This is where we suspect it might fail if logic is wrong
+        assertEquals(TxtarElementTypes.HEADER, lexer.tokenType)
+        tokenText = content.subSequence(lexer.tokenStart, lexer.tokenEnd).toString()
+        assertEquals("-- input.txt,v --\n", tokenText)
+        lexer.advance()
+
+        // Content 3: head 1.1;
+        assertEquals(TxtarElementTypes.CONTENT, lexer.tokenType)
+        tokenText = content.subSequence(lexer.tokenStart, lexer.tokenEnd).toString()
+        assertEquals("head\t1.1;", tokenText)
+        lexer.advance()
+
+        assertNull(lexer.tokenType)
+    }
 }

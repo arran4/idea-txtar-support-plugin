@@ -15,11 +15,11 @@ class RemoveFileAction : AnAction() {
         val offset = editor.caretModel.offset
         val element = psiFile.findElementAt(offset) ?: return
         
-        // Find HEADER or FILE_CONTENT
+        // Find FILE_ENTRY
         var target: PsiElement? = element
         while (target != null) {
             val type = target.node.elementType
-            if (type == TxtarElementTypes.HEADER || type == TxtarElementTypes.FILE_CONTENT) {
+            if (type == TxtarElementTypes.FILE_ENTRY) {
                 break
             }
             target = target.parent
@@ -31,28 +31,9 @@ class RemoveFileAction : AnAction() {
         
         if (target == null) return
         
-        // Identify the pair
-        var header: PsiElement? = null
-        var content: PsiElement? = null
-        
-        if (target.node.elementType == TxtarElementTypes.HEADER) {
-            header = target
-            val next = header.nextSibling
-            if (next != null && next.node.elementType == TxtarElementTypes.FILE_CONTENT) {
-                content = next
-            }
-        } else {
-            content = target
-            val prev = content.prevSibling
-            if (prev != null && prev.node.elementType == TxtarElementTypes.HEADER) {
-                header = prev
-            }
-        }
-        
         // Remove
         WriteCommandAction.runWriteCommandAction(project) {
-            content?.delete()
-            header?.delete()
+            target.delete()
         }
     }
 
@@ -71,7 +52,7 @@ class RemoveFileAction : AnAction() {
                  var target: PsiElement? = element
                  while (target != null) {
                     val type = target.node.elementType
-                    if (type == TxtarElementTypes.HEADER || type == TxtarElementTypes.FILE_CONTENT) {
+                    if (type == TxtarElementTypes.FILE_ENTRY) {
                         e.presentation.isEnabledAndVisible = true
                         break
                     }
