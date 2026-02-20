@@ -4,6 +4,15 @@
     <img src="pluginIcon.svg" alt="Txtar Support Logo" width="128" height="128">
 </p>
 
+<p align="center">
+    <a href="https://plugins.jetbrains.com/plugin/30286-txtar-file-support">
+        <img src="https://img.shields.io/jetbrains/plugin/v/30286.svg" alt="Version">
+    </a>
+    <a href="https://plugins.jetbrains.com/plugin/30286-txtar-file-support">
+        <img src="https://img.shields.io/jetbrains/plugin/d/30286.svg" alt="Downloads">
+    </a>
+</p>
+
 This is an IntelliJ IDEA plugin that provides support for the [txtar](https://pkg.go.dev/golang.org/x/tools/txtar) file format.
 
 ## Status
@@ -21,7 +30,13 @@ The project is currently in active development. Basic support for the `txtar` fo
   - **Remove File**: Remove the file entry at the current caret position.
   - **Append New File from Clipboard**: Paste the clipboard content as a new file entry.
 
-## Build and Install
+## Installation
+
+**From Marketplace:**
+
+The plugin is available on the [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/30286-txtar-file-support).
+
+**Manual Build:**
 
 To build the plugin, run:
 
