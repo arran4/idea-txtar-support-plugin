@@ -55,15 +55,13 @@
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
             <action id="Txtar.AppendNewFile" class="com.arran4.txtar.AppendNewFileAction" text="Append New File" description="Append a new file entry"/>
             <action id="Txtar.AppendFile" class="com.arran4.txtar.AppendFileAction" text="Append File..." description="Append content of an external file"/>
-            <action id="Txtar.RemoveFile" class="com.arran4.txtar.RemoveFileAction" text="Remove File" description="Remove the file entry at caret"/>
+            <action id="Txtar.RemoveFile" class="com.arran4.txtar.RemoveFileAction" text="Delete File" description="Remove the file entry at caret"/>
             <action id="Txtar.ReorderFiles" class="com.arran4.txtar.ReorderFilesAction" text="Reorder Files..." description="Reorder file entries"/>
             <action id="Txtar.CalculateFileSize" class="com.arran4.txtar.CalculateFileSizeAction" text="Calculate File Size" description="Calculate size of file"/>
             <action id="Txtar.ExtractFile" class="com.arran4.txtar.ExtractFileAction" text="Extract File..." description="Extract file / save file as"/>
-            <action id="Txtar.CopyFileToClipboard" class="com.arran4.txtar.CopyFileToClipboardAction" text="Copy File to Clipboard" description="Copy content of the file entry to clipboard"/>
+            <action id="Txtar.CutFile" class="com.arran4.txtar.CutFileAction" text="Cut File" description="Cut file entry to clipboard"/>
+            <action id="Txtar.CopyFileToClipboard" class="com.arran4.txtar.CopyFileToClipboardAction" text="Copy File" description="Copy content of the file entry to clipboard"/>
             <action id="Txtar.AppendClipboard" class="com.arran4.txtar.AppendFromClipboardAction" text="Append New File from Clipboard" description="Append clipboard content as a new file entry"/>
-            <separator/>
-            <reference id="CollapseAll"/>
-            <reference id="ExpandAll"/>
         </group>
     </actions>
 </idea-plugin>
