@@ -42,19 +42,8 @@ class TxtarFoldingBuilder : FoldingBuilderEx(), DumbAware {
      */
     private fun expandToWholeLines(range: TextRange, document: Document): TextRange {
         val text = document.charsSequence
-        var start = range.startOffset.coerceIn(0, document.textLength)
+        val start = range.startOffset.coerceIn(0, document.textLength)
         var end = range.endOffset.coerceIn(0, document.textLength)
-
-        // include preceding line break (prefer grabbing "\r\n" together)
-        if (start > 0) {
-            val prev = text[start - 1]
-            if (prev == '\n') {
-                start--
-                if (start > 0 && text[start - 1] == '\r') start--
-            } else if (prev == '\r') {
-                start--
-            }
-        }
 
         // include following line break (prefer grabbing "\r\n" together)
         if (end < document.textLength) {
