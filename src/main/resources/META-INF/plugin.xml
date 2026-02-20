@@ -38,6 +38,7 @@
             <action id="Txtar.ReorderFiles" class="com.arran4.txtar.ReorderFilesAction" text="Reorder Files..." description="Reorder file entries"/>
             <action id="Txtar.CalculateFileSize" class="com.arran4.txtar.CalculateFileSizeAction" text="Calculate File Size" description="Calculate size of file"/>
             <action id="Txtar.ExtractFile" class="com.arran4.txtar.ExtractFileAction" text="Extract File..." description="Extract file / save file as"/>
+            <action id="Txtar.CopyFileToClipboard" class="com.arran4.txtar.CopyFileToClipboardAction" text="Copy File to Clipboard" description="Copy content of the file entry to clipboard"/>
             <action id="Txtar.AppendClipboard" class="com.arran4.txtar.AppendFromClipboardAction" text="Append New File from Clipboard" description="Append clipboard content as a new file entry"/>
             <separator/>
             <reference id="CollapseAll"/>
