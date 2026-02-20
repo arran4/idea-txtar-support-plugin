@@ -32,3 +32,7 @@ The plugin archive will be generated in `build/distributions/`. You can then ins
 1. Open a `.txtar` file in IntelliJ IDEA.
 2. Right-click in the editor to access the "Txtar" context menu.
 3. Use the available actions to manage the content of the archive.
+
+## License
+
+This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details.
