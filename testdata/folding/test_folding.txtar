@@ -1,5 +1,6 @@
-<fold text='...'>comment
-</fold><fold text='-- file --
-'>-- file --
+<fold text='-- file --'>-- file --
+comment</fold>
+<fold text='-- file --'>
+-- file --
 content
 </fold>
