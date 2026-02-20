@@ -11,5 +11,5 @@ When implementing a new feature:
 ## Release Process
 
 When preparing a release or completing a significant task:
-1.  **Update `CHANGELOG.md`**: Add an entry for the new version/changes under the `[Unreleased]` section or a new version header.
-2.  **Update `plugin.xml`**: Update the `<change-notes>` section in `src/main/resources/META-INF/plugin.xml` with the latest changes.
+1.  **Update `plugin.xml`**: Update the `<change-notes>` section in `src/main/resources/META-INF/plugin.xml` with the latest changes.
+    *   **Note:** We do not maintain a separate `CHANGELOG.md` file. All change logs are kept directly in `plugin.xml`.

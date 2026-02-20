@@ -21,7 +21,10 @@
 
     <change-notes><![CDATA[
     <ul>
-      <li>Initial release.</li>
+        <li>File Type Recognition: Automatically recognizes .txtar files.</li>
+        <li>Syntax Highlighting: Basic syntax highlighting for txtar archives.</li>
+        <li>Folding: Code folding support for file entries in the archive.</li>
+        <li>Editor Actions: Append new file, append from external file, remove file, append from clipboard.</li>
     </ul>
     ]]></change-notes>
 
