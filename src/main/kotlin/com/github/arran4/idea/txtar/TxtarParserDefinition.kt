@@ -1,4 +1,4 @@
-package com.example.txtar
+package com.github.arran4.idea.txtar
 
 import com.intellij.lang.ASTNode
 import com.intellij.lang.ParserDefinition

@@ -1,4 +1,4 @@
-package com.example.txtar
+package com.github.arran4.idea.txtar
 
 import com.intellij.icons.AllIcons
 import javax.swing.Icon

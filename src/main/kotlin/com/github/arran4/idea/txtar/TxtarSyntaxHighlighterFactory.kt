@@ -1,4 +1,4 @@
-package com.example.txtar
+package com.github.arran4.idea.txtar
 
 import com.intellij.openapi.fileTypes.SyntaxHighlighter
 import com.intellij.openapi.fileTypes.SyntaxHighlighterFactory
