@@ -1,8 +1,8 @@
-package com.example.txtar
+package com.arran4.txtar
 
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
-import com.example.txtar.ReorderFilesAction.Companion.parseFile
-import com.example.txtar.ReorderFilesAction.Companion.buildText
+import com.arran4.txtar.ReorderFilesAction.Companion.parseFile
+import com.arran4.txtar.ReorderFilesAction.Companion.buildText
 
 class ReorderFilesActionTest : BasePlatformTestCase() {
 

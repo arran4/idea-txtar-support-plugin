@@ -1,4 +1,4 @@
-package com.example.txtar
+package com.arran4.txtar
 
 import com.intellij.extapi.psi.PsiFileBase
 import com.intellij.openapi.fileTypes.FileType

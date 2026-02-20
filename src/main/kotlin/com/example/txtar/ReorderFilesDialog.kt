@@ -1,4 +1,4 @@
-package com.example.txtar
+package com.arran4.txtar
 
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.DialogWrapper

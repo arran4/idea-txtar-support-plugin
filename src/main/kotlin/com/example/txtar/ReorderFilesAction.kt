@@ -1,10 +1,9 @@
-package com.example.txtar
+package com.arran4.txtar
 
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.command.WriteCommandAction
-import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 
 class ReorderFilesAction : AnAction() {
