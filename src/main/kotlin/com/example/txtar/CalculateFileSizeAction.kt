@@ -3,10 +3,9 @@ package com.example.txtar
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
-import com.intellij.openapi.command.WriteCommandAction
-import com.intellij.psi.PsiElement
+import com.intellij.openapi.ui.Messages
 
-class RemoveFileAction : AnAction() {
+class CalculateFileSizeAction : AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
         val editor = e.getData(CommonDataKeys.EDITOR) ?: return
@@ -15,14 +14,10 @@ class RemoveFileAction : AnAction() {
         val offset = editor.caretModel.offset
         val element = psiFile.findElementAt(offset)
 
-        val (header, content) = TxtarFileEntryUtil.findFileEntry(element)
+        val (_, content) = TxtarFileEntryUtil.findFileEntry(element)
 
-        if (header != null || content != null) {
-            WriteCommandAction.runWriteCommandAction(project) {
-                content?.delete()
-                header?.delete()
-            }
-        }
+        val size = content?.textLength ?: 0
+        Messages.showInfoMessage(project, "Size: $size bytes", "File Size")
     }
 
     override fun update(e: AnActionEvent) {
