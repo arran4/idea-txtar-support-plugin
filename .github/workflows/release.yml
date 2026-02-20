@@ -1,34 +1,58 @@
-name: Release Plugin
+name: Publish JetBrains Plugin
 
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
+
+permissions:
+  contents: write
 
 jobs:
-  build:
-    name: Build and Release
+  publish:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
-          distribution: 'temurin'
+          distribution: temurin
+          java-version: "17"
 
-      - name: Validate Gradle wrapper
-        uses: gradle/wrapper-validation-action@v2
+      - name: Gradle cache
+        uses: gradle/actions/setup-gradle@v3
 
-      - name: Build Plugin
+      - name: Decode signing materials
+        shell: bash
+        run: |
+          echo "${{ secrets.JB_CERTIFICATE_CHAIN_B64 }}" | base64 -d > /tmp/chain.crt
+          echo "${{ secrets.JB_PRIVATE_KEY_B64 }}" | base64 -d > /tmp/private.pem
+
+      - name: Build plugin
         run: ./gradlew buildPlugin
 
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: build/distributions/*
+      - name: Verify plugin (optional)
+        run: ./gradlew verifyPlugin
+
+      - name: Publish to JetBrains Marketplace
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_TOKEN: ${{ secrets.JB_PUBLISH_TOKEN }}
+          CERTIFICATE_CHAIN: /tmp/chain.crt
+          PRIVATE_KEY: /tmp/private.pem
+          PRIVATE_KEY_PASSWORD: ${{ secrets.JB_PRIVATE_KEY_PASSWORD }}
+        run: ./gradlew publishPlugin
+
+      - name: Prepare next version
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git checkout main
+          git pull origin main
+          python3 bump_version.py
+          git add gradle.properties src/main/resources/META-INF/plugin.xml CHANGELOG.md
+          git commit -m "Prepare next version"
+          git push origin main

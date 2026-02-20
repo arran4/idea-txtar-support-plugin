@@ -8,7 +8,8 @@
     <depends>com.intellij.modules.platform</depends>
 
     <description><![CDATA[
-    Support for txtar file format.
+    Provides support for the txtar file format in IntelliJ IDEA.
+    Includes syntax highlighting, file structure folding, and editor actions for managing txtar archives.
     ]]></description>
 
     <extensions defaultExtensionNs="com.intellij">
