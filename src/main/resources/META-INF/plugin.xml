@@ -34,6 +34,9 @@
             <action id="Txtar.AppendFile" class="com.example.txtar.AppendFileAction" text="Append File..." description="Append content of an external file"/>
             <action id="Txtar.RemoveFile" class="com.example.txtar.RemoveFileAction" text="Remove File" description="Remove the file entry at caret"/>
             <action id="Txtar.AppendClipboard" class="com.example.txtar.AppendFromClipboardAction" text="Append New File from Clipboard" description="Append clipboard content as a new file entry"/>
+            <separator/>
+            <reference id="CollapseAll"/>
+            <reference id="ExpandAll"/>
         </group>
     </actions>
 </idea-plugin>
