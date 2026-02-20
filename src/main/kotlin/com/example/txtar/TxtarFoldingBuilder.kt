@@ -14,7 +14,7 @@ class TxtarFoldingBuilder : FoldingBuilderEx(), DumbAware {
         var child = root.firstChild
         while (child != null) {
             val type = child.node.elementType
-            if (type == TxtarElementTypes.COMMENT_BLOCK || type == TxtarElementTypes.FILE_CONTENT) {
+            if (type == TxtarElementTypes.COMMENT_BLOCK || type == TxtarElementTypes.FILE_ENTRY) {
                 if (child.textLength > 0) {
                      descriptors.add(FoldingDescriptor(child, child.textRange))
                 }
@@ -28,7 +28,10 @@ class TxtarFoldingBuilder : FoldingBuilderEx(), DumbAware {
     override fun getPlaceholderText(node: ASTNode): String? {
         val type = node.elementType
         if (type == TxtarElementTypes.COMMENT_BLOCK) return "..."
-        if (type == TxtarElementTypes.FILE_CONTENT) return "..."
+        if (type == TxtarElementTypes.FILE_ENTRY) {
+            val header = node.findChildByType(TxtarElementTypes.HEADER)
+            return header?.text ?: "..."
+        }
         return null
     }
 

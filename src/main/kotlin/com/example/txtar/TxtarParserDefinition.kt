@@ -33,6 +33,7 @@ class TxtarParserDefinition : ParserDefinition {
         
         while (!builder.eof()) {
             if (builder.tokenType == TxtarElementTypes.HEADER) {
+                val fileMarker = builder.mark()
                 builder.advanceLexer()
                 
                 if (builder.tokenType == TxtarElementTypes.CONTENT) {
@@ -42,6 +43,7 @@ class TxtarParserDefinition : ParserDefinition {
                     }
                     contentMarker.done(TxtarElementTypes.FILE_CONTENT)
                 }
+                fileMarker.done(TxtarElementTypes.FILE_ENTRY)
             } else {
                 // Should be unreachable if lexer is correct, but safe fallback
                 builder.advanceLexer()
