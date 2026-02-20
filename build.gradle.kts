@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.arran4.txtar"
-version = System.getenv("GITHUB_REF_NAME") ?: "1.0.0"
+version = System.getenv("GITHUB_REF_NAME") ?: "1.0.1"
 
 repositories {
     mavenCentral()
