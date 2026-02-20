@@ -60,15 +60,6 @@ class ReorderFilesActionTest : BasePlatformTestCase() {
         assertEquals("-- file1.txt --\n", entries[0].headerText)
         assertEquals("", entries[0].contentText)
         assertEquals("-- file2.txt --\n", entries[1].headerText)
-        assertEquals("", entries[1].contentText) // or maybe "\n" if newline is not part of header?
-
-        // Wait, Header includes newline?
-        // In my TxtarLexer analysis: Yes.
-        // So contentText is empty string if there is no content.
-        // If there is just "\n", is it content?
-        // "-- file1.txt --\n" -> Header
-        // "-- file2.txt --\n" -> Header
-        // The newline after first header is part of first header.
-        // So content is empty. Correct.
+        assertEquals("", entries[1].contentText)
     }
 }
