@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.example.txtar</id>
     <name>Txtar Support</name>
-    <vendor>Example</vendor>
+    <vendor>arran4</vendor>
 
     <description><![CDATA[
     Support for txtar file format.
