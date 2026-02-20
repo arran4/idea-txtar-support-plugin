@@ -28,6 +28,9 @@
     </extensions>
 
     <actions>
+        <action id="Txtar.NewFile" class="com.example.txtar.CreateTxtarFileAction" text="Txtar File" description="Create a new Txtar file">
+            <add-to-group group-id="NewGroup" anchor="before" relative-to-action="NewFile"/>
+        </action>
         <group id="Txtar.EditorActions" text="Txtar" popup="true">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
             <action id="Txtar.AppendNewFile" class="com.example.txtar.AppendNewFileAction" text="Append New File" description="Append a new file entry"/>
