@@ -1,4 +1,4 @@
-package com.github.arran4.idea.txtar
+package com.arran4.txtar
 
 import com.intellij.lang.ASTNode
 import com.intellij.lang.folding.FoldingBuilderEx

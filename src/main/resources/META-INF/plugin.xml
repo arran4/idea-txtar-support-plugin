@@ -1,5 +1,5 @@
 <idea-plugin>
-    <id>com.github.arran4.idea.txtar</id>
+    <id>com.arran4.txtar</id>
     <name>Txtar Support</name>
     <vendor>arran4</vendor>
 
@@ -12,28 +12,28 @@
     <extensions defaultExtensionNs="com.intellij">
         <fileType
             name="Txtar"
-            implementationClass="com.github.arran4.idea.txtar.TxtarFileType"
+            implementationClass="com.arran4.txtar.TxtarFileType"
             fieldName="INSTANCE"
             language="Txtar"
             extensions="txtar"/>
         <lang.parserDefinition
             language="Txtar"
-            implementationClass="com.github.arran4.idea.txtar.TxtarParserDefinition"/>
+            implementationClass="com.arran4.txtar.TxtarParserDefinition"/>
         <lang.syntaxHighlighterFactory
             language="Txtar"
-            implementationClass="com.github.arran4.idea.txtar.TxtarSyntaxHighlighterFactory"/>
+            implementationClass="com.arran4.txtar.TxtarSyntaxHighlighterFactory"/>
         <lang.foldingBuilder
             language="Txtar"
-            implementationClass="com.github.arran4.idea.txtar.TxtarFoldingBuilder"/>
+            implementationClass="com.arran4.txtar.TxtarFoldingBuilder"/>
     </extensions>
 
     <actions>
         <group id="Txtar.EditorActions" text="Txtar" popup="true">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
-            <action id="Txtar.AppendNewFile" class="com.github.arran4.idea.txtar.AppendNewFileAction" text="Append New File" description="Append a new file entry"/>
-            <action id="Txtar.AppendFile" class="com.github.arran4.idea.txtar.AppendFileAction" text="Append File..." description="Append content of an external file"/>
-            <action id="Txtar.RemoveFile" class="com.github.arran4.idea.txtar.RemoveFileAction" text="Remove File" description="Remove the file entry at caret"/>
-            <action id="Txtar.AppendClipboard" class="com.github.arran4.idea.txtar.AppendFromClipboardAction" text="Append New File from Clipboard" description="Append clipboard content as a new file entry"/>
+            <action id="Txtar.AppendNewFile" class="com.arran4.txtar.AppendNewFileAction" text="Append New File" description="Append a new file entry"/>
+            <action id="Txtar.AppendFile" class="com.arran4.txtar.AppendFileAction" text="Append File..." description="Append content of an external file"/>
+            <action id="Txtar.RemoveFile" class="com.arran4.txtar.RemoveFileAction" text="Remove File" description="Remove the file entry at caret"/>
+            <action id="Txtar.AppendClipboard" class="com.arran4.txtar.AppendFromClipboardAction" text="Append New File from Clipboard" description="Append clipboard content as a new file entry"/>
         </group>
     </actions>
 </idea-plugin>
