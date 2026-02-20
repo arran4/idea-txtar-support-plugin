@@ -1,6 +1,6 @@
-# Txtar Support Plugin
+# Txtar Support
 
-This is an IntelliJ IDEA plugin that provides support for the [txtar](https://pkg.go.dev/golang.org/x/tools/txtar) file format.
+This project provides support for the [txtar](https://pkg.go.dev/golang.org/x/tools/txtar) file format.
 
 ## Status
 
@@ -19,16 +19,16 @@ The project is currently in active development. Basic support for the `txtar` fo
 
 ## Build and Install
 
-To build the plugin, run:
+To build, run:
 
 ```bash
 ./gradlew buildPlugin
 ```
 
-The plugin archive will be generated in `build/distributions/`. You can then install it in IntelliJ IDEA via "Install Plugin from Disk...".
+The archive will be generated in `build/distributions/`. You can then install it via "Install from Disk...".
 
 ## Usage
 
-1. Open a `.txtar` file in IntelliJ IDEA.
+1. Open a `.txtar` file.
 2. Right-click in the editor to access the "Txtar" context menu.
 3. Use the available actions to manage the content of the archive.
