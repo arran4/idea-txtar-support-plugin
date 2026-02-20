@@ -1,7 +1,8 @@
-<idea-plugin>
+<idea-plugin url="https://github.com/arran4/idea-txtar-support-plugin">
     <id>com.arran4.txtar</id>
-    <name>Txtar Support</name>
-    <vendor>arran4</vendor>
+    <name>txtar file support</name>
+    <version>1.0.0</version>
+    <vendor url="https://github.com/arran4/">arran-ubels</vendor>
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
@@ -55,6 +56,7 @@
             <action id="Txtar.ReorderFiles" class="com.arran4.txtar.ReorderFilesAction" text="Reorder Files..." description="Reorder file entries"/>
             <action id="Txtar.CalculateFileSize" class="com.arran4.txtar.CalculateFileSizeAction" text="Calculate File Size" description="Calculate size of file"/>
             <action id="Txtar.ExtractFile" class="com.arran4.txtar.ExtractFileAction" text="Extract File..." description="Extract file / save file as"/>
+            <action id="Txtar.CopyFileToClipboard" class="com.arran4.txtar.CopyFileToClipboardAction" text="Copy File to Clipboard" description="Copy content of the file entry to clipboard"/>
             <action id="Txtar.AppendClipboard" class="com.arran4.txtar.AppendFromClipboardAction" text="Append New File from Clipboard" description="Append clipboard content as a new file entry"/>
             <separator/>
             <reference id="CollapseAll"/>
