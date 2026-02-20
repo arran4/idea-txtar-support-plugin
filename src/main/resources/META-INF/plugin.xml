@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.example.txtar</id>
     <name>Txtar Support</name>
-    <vendor>Example</vendor>
+    <vendor>arran4</vendor>
 
     <description><![CDATA[
     Support for txtar file format.
@@ -34,7 +34,12 @@
             <action id="Txtar.AppendFile" class="com.example.txtar.AppendFileAction" text="Append File..." description="Append content of an external file"/>
             <action id="Txtar.RemoveFile" class="com.example.txtar.RemoveFileAction" text="Remove File" description="Remove the file entry at caret"/>
             <action id="Txtar.ReorderFiles" class="com.example.txtar.ReorderFilesAction" text="Reorder Files..." description="Reorder file entries"/>
+            <action id="Txtar.CalculateFileSize" class="com.example.txtar.CalculateFileSizeAction" text="Calculate File Size" description="Calculate size of file"/>
+            <action id="Txtar.ExtractFile" class="com.example.txtar.ExtractFileAction" text="Extract File..." description="Extract file / save file as"/>
             <action id="Txtar.AppendClipboard" class="com.example.txtar.AppendFromClipboardAction" text="Append New File from Clipboard" description="Append clipboard content as a new file entry"/>
+            <separator/>
+            <reference id="CollapseAll"/>
+            <reference id="ExpandAll"/>
         </group>
     </actions>
 </idea-plugin>
