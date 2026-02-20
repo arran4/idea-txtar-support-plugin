@@ -9,25 +9,23 @@
     <depends>com.intellij.modules.platform</depends>
 
     <description><![CDATA[
-    txtar file support (see <a href="https://pkg.go.dev/golang.org/x/tools/txtar">https://pkg.go.dev/golang.org/x/tools/txtar</a>)<br>
-    This version includes:<br>
+    Support for the txtar file format.
+    <br>
+    Features:
     <ul>
-        <li>folding</li>
-        <li>adding (clipboard, open dialog)</li>
-        <li>removing</li>
-        <li>rearranging</li>
-        <li>new file</li>
+        <li>File Type Recognition: Automatically recognizes .txtar files.</li>
+        <li>Syntax Highlighting: Basic syntax highlighting for txtar archives.</li>
+        <li>Folding: Code folding support for file entries in the archive.</li>
+        <li>Editor Actions: Append new file, append from external file, remove file, append from clipboard.</li>
     </ul>
     ]]></description>
 
     <change-notes><![CDATA[
-    Initial version with all the features in description:<br>
     <ul>
-        <li>folding</li>
-        <li>adding (clipboard, open dialog)</li>
-        <li>removing</li>
-        <li>rearranging</li>
-        <li>new file</li>
+        <li>File Type Recognition: Automatically recognizes .txtar files.</li>
+        <li>Syntax Highlighting: Basic syntax highlighting for txtar archives.</li>
+        <li>Folding: Code folding support for file entries in the archive.</li>
+        <li>Editor Actions: Append new file, append from external file, remove file, append from clipboard.</li>
     </ul>
     ]]></change-notes>
 
