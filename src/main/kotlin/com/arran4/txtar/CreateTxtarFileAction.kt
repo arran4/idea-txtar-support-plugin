@@ -1,4 +1,4 @@
-package com.example.txtar
+package com.arran4.txtar
 
 import com.intellij.ide.actions.CreateFileFromTemplateAction
 import com.intellij.ide.actions.CreateFileFromTemplateDialog

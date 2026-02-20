@@ -1,4 +1,4 @@
-package com.example.txtar
+package com.arran4.txtar
 
 import com.intellij.psi.tree.IElementType
 import com.intellij.psi.TokenType
