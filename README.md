@@ -1,5 +1,9 @@
 # Txtar Support Plugin
 
+<p align="center">
+    <img src="pluginIcon.svg" alt="Txtar Support Logo" width="128" height="128">
+</p>
+
 This is an IntelliJ IDEA plugin that provides support for the [txtar](https://pkg.go.dev/golang.org/x/tools/txtar) file format.
 
 ## Status

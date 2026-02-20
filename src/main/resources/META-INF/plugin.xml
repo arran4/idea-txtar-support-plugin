@@ -3,11 +3,13 @@
     <name>Txtar Support</name>
     <vendor>arran4</vendor>
 
+    <!-- Product and plugin compatibility requirements -->
+    <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
     <description><![CDATA[
     Support for txtar file format.
     ]]></description>
-
-    <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <fileType
