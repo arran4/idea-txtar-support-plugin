@@ -1,10 +1,12 @@
 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="40" height="40" rx="8" fill="url(#paint0_linear)"/>
-  <path d="M12 10V30H28V14L24 10H12Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
-  <path d="M24 10V14H28" stroke="white" stroke-width="2" stroke-linejoin="round"/>
-  <path d="M15 20H18" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M22 20H25" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M15 24H25" stroke="white" stroke-width="1" stroke-opacity="0.6" stroke-linecap="round"/>
+  <g transform="translate(4,4) scale(0.8)">
+    <rect width="40" height="40" rx="8" fill="url(#paint0_linear)"/>
+    <path d="M12 10V30H28V14L24 10H12Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M24 10V14H28" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M15 20H18" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M22 20H25" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M15 24H25" stroke="white" stroke-width="1" stroke-opacity="0.6" stroke-linecap="round"/>
+  </g>
   <defs>
     <linearGradient id="paint0_linear" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
       <stop stop-color="#2D61B5"/>
