@@ -41,39 +41,24 @@ class ReorderFilesAction : AnAction() {
             val entries = mutableListOf<TxtarEntry>()
 
             val children = psiFile.children
-            var i = 0
-
-            if (i < children.size && children[i].node.elementType == TxtarElementTypes.COMMENT_BLOCK) {
-                commentBlock = children[i].text
-                i++
-            }
-
-            while (i < children.size) {
-                val element = children[i]
-                if (element.node.elementType == TxtarElementTypes.HEADER) {
-                    val headerText = element.text
-                    i++
+            for (child in children) {
+                if (child.node.elementType == TxtarElementTypes.COMMENT_BLOCK) {
+                    commentBlock = child.text
+                } else if (child.node.elementType == TxtarElementTypes.FILE_ENTRY) {
+                    var headerText = ""
                     var contentText = ""
-
-                    // Look for content, skipping unknown elements
-                    while (i < children.size) {
-                        val type = children[i].node.elementType
-                        if (type == TxtarElementTypes.FILE_CONTENT) {
-                            contentText = children[i].text
-                            i++
-                            break
-                        } else if (type == TxtarElementTypes.HEADER) {
-                            // Next header found, so no content for this entry
-                            break
-                        } else {
-                            // Skip unknown elements (e.g. whitespace if any)
-                            i++
+                    var grandChild = child.firstChild
+                    while (grandChild != null) {
+                        if (grandChild.node.elementType == TxtarElementTypes.HEADER) {
+                            headerText = grandChild.text
+                        } else if (grandChild.node.elementType == TxtarElementTypes.FILE_CONTENT) {
+                            contentText = grandChild.text
                         }
+                        grandChild = grandChild.nextSibling
                     }
-                    entries.add(TxtarEntry(headerText, contentText))
-                } else {
-                    // Skip unknown elements
-                    i++
+                    if (headerText.isNotEmpty()) {
+                        entries.add(TxtarEntry(headerText, contentText))
+                    }
                 }
             }
             return Pair(commentBlock, entries)
