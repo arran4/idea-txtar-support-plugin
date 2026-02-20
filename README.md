@@ -23,6 +23,12 @@ The project is currently in active development. Basic support for the `txtar` fo
 
 ## Build and Install
 
+<div id="marketplace-install-widget"></div>
+<script src="https://plugins.jetbrains.com/assets/scripts/mp-widget.js"></script>
+<script>
+  MarketplaceWidget.setupMarketplaceWidget('install', 30286, "#marketplace-install-widget");
+</script>
+
 To build the plugin, run:
 
 ```bash
