@@ -1,15 +1,35 @@
-<idea-plugin>
+<idea-plugin url="https://github.com/arran4/idea-txtar-support-plugin">
     <id>com.arran4.txtar</id>
-    <name>Txtar Support</name>
-    <vendor>arran4</vendor>
+    <name>txtar file support</name>
+    <version>1.0.0</version>
+    <vendor url="https://github.com/arran4/">arran-ubels</vendor>
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
 
     <description><![CDATA[
-    Support for txtar file format.
+    txtar file support (see <a href="https://pkg.go.dev/golang.org/x/tools/txtar">https://pkg.go.dev/golang.org/x/tools/txtar</a>)<br>
+    This version includes:<br>
+    <ul>
+        <li>folding</li>
+        <li>adding (clipboard, open dialog)</li>
+        <li>removing</li>
+        <li>rearranging</li>
+        <li>new file</li>
+    </ul>
     ]]></description>
+
+    <change-notes><![CDATA[
+    Initial version with all the features in description:<br>
+    <ul>
+        <li>folding</li>
+        <li>adding (clipboard, open dialog)</li>
+        <li>removing</li>
+        <li>rearranging</li>
+        <li>new file</li>
+    </ul>
+    ]]></change-notes>
 
     <extensions defaultExtensionNs="com.intellij">
         <fileType
