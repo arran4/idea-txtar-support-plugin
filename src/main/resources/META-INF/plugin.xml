@@ -1,7 +1,7 @@
 <idea-plugin url="https://github.com/arran4/idea-txtar-support-plugin">
     <id>com.arran4.txtar</id>
     <name>txtar file support</name>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <vendor url="https://github.com/arran4/">arran-ubels</vendor>
 
     <!-- Product and plugin compatibility requirements -->
