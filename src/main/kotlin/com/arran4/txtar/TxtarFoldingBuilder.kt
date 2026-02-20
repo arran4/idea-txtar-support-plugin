@@ -21,7 +21,7 @@ class TxtarFoldingBuilder : FoldingBuilderEx(), DumbAware {
             val rawRange = element.textRange
             if (rawRange.length <= 0) return@forEach
 
-            val range = expandToWholeLines(rawRange, document)
+            val range = trimTrailingNewline(rawRange, document)
             if (range.length <= 0) return@forEach
 
             descriptors.add(FoldingDescriptor(element, range))
@@ -31,28 +31,21 @@ class TxtarFoldingBuilder : FoldingBuilderEx(), DumbAware {
     }
 
     /**
-     * Expands folding so that:
-     * - it includes the line break BEFORE the element (if present)
-     * - it includes the line break AFTER the element (if present)
-     *
-     * This keeps IntelliJ's folding test markup in the multiline form:
-     * <fold ...>
-     * ...
-     * </fold>
+     * Trims folding so that:
+     * - it excludes the trailing line break
      */
-    private fun expandToWholeLines(range: TextRange, document: Document): TextRange {
+    private fun trimTrailingNewline(range: TextRange, document: Document): TextRange {
         val text = document.charsSequence
-        val start = range.startOffset.coerceIn(0, document.textLength)
-        var end = range.endOffset.coerceIn(0, document.textLength)
+        val start = range.startOffset
+        var end = range.endOffset
 
-        // include following line break (prefer grabbing "\r\n" together)
-        if (end < document.textLength) {
-            val next = text[end]
-            if (next == '\r') {
-                end++
-                if (end < document.textLength && text[end] == '\n') end++
-            } else if (next == '\n') {
-                end++
+        if (end > start && end <= document.textLength) {
+            val lastCharIndex = end - 1
+            if (text[lastCharIndex] == '\n') {
+                end--
+                if (end > start && text[end - 1] == '\r') {
+                    end--
+                }
             }
         }
 
