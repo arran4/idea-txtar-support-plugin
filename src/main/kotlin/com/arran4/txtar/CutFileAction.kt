@@ -4,8 +4,10 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.command.WriteCommandAction
+import com.intellij.openapi.ide.CopyPasteManager
+import java.awt.datatransfer.StringSelection
 
-class RemoveFileAction : AnAction() {
+class CutFileAction : AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
         val editor = e.getData(CommonDataKeys.EDITOR) ?: return
@@ -17,6 +19,9 @@ class RemoveFileAction : AnAction() {
         val (header, content) = TxtarFileEntryUtil.findFileEntry(element)
 
         if (header != null || content != null) {
+            val contentStr = content?.text ?: ""
+            CopyPasteManager.getInstance().setContents(StringSelection(contentStr))
+
             WriteCommandAction.runWriteCommandAction(project) {
                 content?.delete()
                 header?.delete()
