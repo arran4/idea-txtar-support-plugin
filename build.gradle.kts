@@ -14,9 +14,16 @@ repositories {
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
+    pluginName.set("txtar-support")
     version.set("2023.2.5")
     type.set("IC") // Target IDE Platform
     plugins.set(listOf(/* Plugin Dependencies */))
+}
+
+configurations {
+    runtimeClasspath {
+        exclude(group = "org.jetbrains.kotlin")
+    }
 }
 
 tasks {
@@ -27,6 +34,10 @@ tasks {
     }
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         kotlinOptions.jvmTarget = "17"
+    }
+
+    instrumentCode {
+        enabled = false
     }
 
     patchPluginXml {
