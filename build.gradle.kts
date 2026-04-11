@@ -41,8 +41,8 @@ tasks {
     }
 
     patchPluginXml {
-        sinceBuild.set("232")
-        untilBuild.set("262.*")
+        sinceBuild.set(providers.gradleProperty("pluginSinceBuild"))
+        untilBuild.set(providers.gradleProperty("pluginUntilBuild"))
     }
 
     signPlugin {
