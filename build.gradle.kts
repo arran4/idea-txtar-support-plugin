@@ -47,6 +47,10 @@ tasks {
         changeNotes.set(provider { file("CHANGELOG.md").readText() })
     }
 
+    buildPlugin {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }
+
     signPlugin {
         certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
         privateKey.set(System.getenv("PRIVATE_KEY"))

@@ -255,7 +255,7 @@ jobs:
           java-version: '17'
           distribution: temurin
       - name: Gradle cache
-        uses: gradle/actions/setup-gradle@v3
+        uses: gradle/actions/setup-gradle@v4
       - run: ./gradlew buildPlugin verifyPlugin test
 
   gradle-publish:
@@ -272,7 +272,7 @@ jobs:
           java-version: '17'
           distribution: temurin
       - name: Gradle cache
-        uses: gradle/actions/setup-gradle@v3
+        uses: gradle/actions/setup-gradle@v4
       - name: Tag commit for release (workflow_dispatch)
         if: ${{ github.event_name == 'workflow_dispatch' && startsWith(inputs.mode, 'release-') }}
         run: |
