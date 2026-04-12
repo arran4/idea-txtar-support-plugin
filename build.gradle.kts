@@ -5,7 +5,8 @@ plugins {
 }
 
 group = "com.arran4.txtar"
-version = System.getenv("GITHUB_REF_NAME") ?: "1.0.3"
+val pluginVersion: String by project
+version = System.getenv("GITHUB_REF_NAME")?.removePrefix("v") ?: pluginVersion
 
 repositories {
     mavenCentral()
@@ -43,6 +44,7 @@ tasks {
     patchPluginXml {
         sinceBuild.set(providers.gradleProperty("pluginSinceBuild"))
         untilBuild.set(providers.gradleProperty("pluginUntilBuild"))
+        changeNotes.set(provider { file("CHANGELOG.md").readText() })
     }
 
     signPlugin {
