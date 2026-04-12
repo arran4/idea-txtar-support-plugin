@@ -14,7 +14,10 @@ import javax.swing.JPanel
 import java.awt.Dimension
 
 class EditDescriptionDialog(project: Project?, initialNotes: String) : DialogWrapper(project, true) {
-    private val textArea = JBTextArea(initialNotes)
+    private val textArea = JBTextArea(initialNotes).apply {
+        lineWrap = true
+        wrapStyleWord = true
+    }
 
     init {
         title = "Edit Notes/Description"
@@ -39,6 +42,12 @@ class EditDescriptionDialog(project: Project?, initialNotes: String) : DialogWra
 }
 
 class EditDescriptionAction : AnAction() {
+    override fun update(e: AnActionEvent) {
+        val file = e.getData(CommonDataKeys.PSI_FILE)
+        // Only show if it's a TxtarFile
+        e.presentation.isEnabledAndVisible = file is TxtarFile
+    }
+
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
         val editor = e.getData(CommonDataKeys.EDITOR) ?: return
@@ -58,14 +67,14 @@ class EditDescriptionAction : AnAction() {
         val dialog = EditDescriptionDialog(project, currentNotes)
         if (dialog.showAndGet()) {
             val newNotes = dialog.getNotes()
-            WriteCommandAction.runWriteCommandAction(project) {
+            WriteCommandAction.runWriteCommandAction(project, "Edit Description", null, {
                 var notesToInsert = newNotes
                 if (notesToInsert.isNotEmpty() && !notesToInsert.endsWith("\n") && firstHeaderOffset < document.textLength) {
                     notesToInsert += "\n"
                 }
                 // Also, if previous notes had a trailing newline but new ones don't, we might need to ensure there's a separation.
                 document.replaceString(0, firstHeaderOffset, notesToInsert)
-            }
+            }, file)
         }
     }
 }
