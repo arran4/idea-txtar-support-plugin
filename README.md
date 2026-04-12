@@ -13,7 +13,7 @@
     </a>
 </p>
 
-This is a project that provides support for the [txtar](https://pkg.go.dev/golang.org/x/tools/txtar) file format.
+Provides support for the [txtar](https://pkg.go.dev/golang.org/x/tools/txtar) file format.
 
 ## Status
 
