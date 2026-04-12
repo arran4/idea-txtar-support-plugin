@@ -6,7 +6,7 @@ plugins {
 
 group = "com.arran4.txtar"
 val pluginVersion: String by project
-version = System.getenv("GITHUB_REF_NAME")?.removePrefix("v") ?: pluginVersion
+version = System.getenv("GITHUB_REF_NAME")?.removePrefix("v")?.replace("/", "-") ?: pluginVersion
 
 repositories {
     mavenCentral()
