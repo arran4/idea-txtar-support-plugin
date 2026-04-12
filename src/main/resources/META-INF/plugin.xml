@@ -1,6 +1,6 @@
 <idea-plugin url="https://github.com/arran4/idea-txtar-support-plugin">
     <id>com.arran4.txtar</id>
-    <name>txtar file support</name>
+    <name>Txtar File</name>
     <version>1.0.3</version>
     <vendor url="https://github.com/arran4/">arran-ubels</vendor>
 
