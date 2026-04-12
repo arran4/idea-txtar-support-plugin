@@ -12,8 +12,11 @@ import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.application.ApplicationManager
+import com.intellij.openapi.progress.ProgressManager
+import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiFile
+import com.intellij.openapi.diagnostic.Logger
 import java.io.IOException
 
 class CreateTxtarFileAction : CreateFileFromTemplateAction(
@@ -47,9 +50,11 @@ class CreateTxtarFileAction : CreateFileFromTemplateAction(
             // Add a newline to separate from template content if needed
             content.append("\n")
 
-            for (file in files) {
-                processFile(file, "", content)
-            }
+            ProgressManager.getInstance().runProcessWithProgressSynchronously({
+                for (file in files) {
+                    processFile(file, "", content)
+                }
+            }, "Reading Files to Append", true, project)
 
             WriteCommandAction.runWriteCommandAction(project) {
                 val documentManager = PsiDocumentManager.getInstance(project)
@@ -61,13 +66,13 @@ class CreateTxtarFileAction : CreateFileFromTemplateAction(
     }
 
     private fun processFile(file: VirtualFile, pathPrefix: String, content: StringBuilder) {
+        val relativePath = if (pathPrefix.isEmpty()) file.name else "$pathPrefix/${file.name}"
         if (file.isDirectory) {
             for (child in file.children) {
-                processFile(child, if (pathPrefix.isEmpty()) file.name else "$pathPrefix/${file.name}", content)
+                processFile(child, relativePath, content)
             }
         } else {
             try {
-                val relativePath = if (pathPrefix.isEmpty()) file.name else "$pathPrefix/${file.name}"
                 content.append("-- $relativePath --\n")
                 // Use VfsUtil.loadText to read file content
                 content.append(VfsUtil.loadText(file))
@@ -75,7 +80,7 @@ class CreateTxtarFileAction : CreateFileFromTemplateAction(
                     content.append("\n")
                 }
             } catch (e: IOException) {
-                // Ignore errors reading files
+                Logger.getInstance(CreateTxtarFileAction::class.java).warn("Error reading file to append", e)
             }
         }
     }
