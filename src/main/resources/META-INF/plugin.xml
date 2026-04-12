@@ -9,7 +9,8 @@
     <depends>com.intellij.modules.platform</depends>
 
     <description><![CDATA[
-    Support for the txtar file format.
+    Provides support for the txtar file format in IntelliJ IDEA.
+    Includes syntax highlighting, file structure folding, and editor actions for managing txtar archives.
     <br>
     Features:
     <ul>
@@ -19,15 +20,6 @@
         <li>Editor Actions: Append new file, append from external file, remove file, append from clipboard.</li>
     </ul>
     ]]></description>
-
-    <change-notes><![CDATA[
-    <ul>
-        <li>File Type Recognition: Automatically recognizes .txtar files.</li>
-        <li>Syntax Highlighting: Basic syntax highlighting for txtar archives.</li>
-        <li>Folding: Code folding support for file entries in the archive.</li>
-        <li>Editor Actions: Append new file, append from external file, remove file, append from clipboard.</li>
-    </ul>
-    ]]></change-notes>
 
     <extensions defaultExtensionNs="com.intellij">
         <fileType
