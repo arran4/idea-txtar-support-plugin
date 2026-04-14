@@ -116,7 +116,7 @@ class TxtarEntriesDialog(
                     }
 
                     try {
-                        val content = String(file.contentsToByteArray(), Charsets.UTF_8)
+                        val content = com.intellij.openapi.vfs.VfsUtil.loadText(file)
                         val entry = TxtarEntry("-- ${file.name} --", content)
                         entriesModel.add(entry)
                     } catch (ex: IOException) {
@@ -236,8 +236,6 @@ class TxtarEntriesDialog(
             entry.contentText = contentPreviewArea.text
             // Notify list model to update rendering if filename changed
             entriesModel.setElementAt(entry, selectedIndex)
-            // Keep selection
-            entriesList.selectedIndex = selectedIndex
         }
     }
 
