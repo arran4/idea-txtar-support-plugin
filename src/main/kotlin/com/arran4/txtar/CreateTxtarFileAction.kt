@@ -47,8 +47,6 @@ class CreateTxtarFileAction : CreateFileFromTemplateAction(
             if (files.isEmpty()) return@invokeLater
 
             val content = StringBuilder()
-            // Add a newline to separate from template content if needed
-            content.append("\n")
 
             ProgressManager.getInstance().runProcessWithProgressSynchronously({
                 for (file in files) {
@@ -59,7 +57,13 @@ class CreateTxtarFileAction : CreateFileFromTemplateAction(
             WriteCommandAction.runWriteCommandAction(project) {
                 val documentManager = PsiDocumentManager.getInstance(project)
                 val document = documentManager.getDocument(createdElement) ?: return@runWriteCommandAction
-                document.insertString(document.textLength, content.toString())
+
+                var contentStr = content.toString()
+                if (contentStr.isNotEmpty() && document.textLength > 0 && !document.text.endsWith("\n")) {
+                    contentStr = "\n$contentStr"
+                }
+
+                document.insertString(document.textLength, contentStr)
                 documentManager.commitDocument(document)
             }
         }
