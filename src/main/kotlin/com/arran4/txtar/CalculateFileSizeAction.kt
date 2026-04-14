@@ -34,11 +34,6 @@ class CalculateFileSizeAction : AnAction() {
              if (header != null || content != null) {
                  e.presentation.isEnabledAndVisible = true
              }
-        } else if (psiFile is TxtarFile && editor == null) {
-            // Disabled in project view but invisible?
-            // Actually, if we just want it to be not visible or disabled,
-            // the default is already `e.presentation.isEnabledAndVisible = false`
-            // Let's explicitly keep it invisible.
         }
     }
 }
