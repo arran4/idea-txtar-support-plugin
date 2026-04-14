@@ -37,6 +37,17 @@
         <lang.foldingBuilder
             language="Txtar"
             implementationClass="com.arran4.txtar.TxtarFoldingBuilder"/>
+
+        <intentionAction>
+            <className>com.arran4.txtar.EditTxtarEntriesIntention</className>
+            <category>Txtar</category>
+            <descriptionDirectoryName>EditTxtarEntriesIntention</descriptionDirectoryName>
+        </intentionAction>
+        <intentionAction>
+            <className>com.arran4.txtar.CalculateFileSizeIntention</className>
+            <category>Txtar</category>
+            <descriptionDirectoryName>CalculateFileSizeIntention</descriptionDirectoryName>
+        </intentionAction>
     </extensions>
 
     <actions>
