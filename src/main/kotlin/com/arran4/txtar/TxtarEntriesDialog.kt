@@ -21,7 +21,7 @@ import java.io.IOException
 import javax.swing.*
 import javax.swing.event.DocumentEvent
 import javax.swing.event.DocumentListener
-import com.intellij.ui.AnActionButton
+import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.icons.AllIcons
 
@@ -153,7 +153,7 @@ class TxtarEntriesDialog(
                     entriesList.selectedIndex = selectedIndex + 1
                 }
             }
-            .addExtraAction(object : AnActionButton("Add Empty File", AllIcons.General.Add) {
+            .addExtraAction(object : AnAction("Add Empty File", "Add Empty File", AllIcons.General.Add) {
                 override fun actionPerformed(e: AnActionEvent) {
                     val name = Messages.showInputDialog(project, "Enter filename:", "Add Empty File", Messages.getQuestionIcon())
                     if (!name.isNullOrBlank()) {
@@ -162,7 +162,7 @@ class TxtarEntriesDialog(
                     }
                 }
             })
-            .addExtraAction(object : AnActionButton("Add from Clipboard", AllIcons.Actions.MenuPaste) {
+            .addExtraAction(object : AnAction("Add from Clipboard", "Add from Clipboard", AllIcons.Actions.MenuPaste) {
                 override fun actionPerformed(e: AnActionEvent) {
                     val clipboardContent = CopyPasteManager.getInstance().getContents<String>(DataFlavor.stringFlavor)
                     if (clipboardContent.isNullOrEmpty()) {
