@@ -6,18 +6,10 @@ import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiDirectory
 import com.intellij.psi.PsiElement
-import com.intellij.openapi.fileChooser.FileChooser
-import com.intellij.openapi.fileChooser.FileChooserDescriptor
-import com.intellij.openapi.vfs.VirtualFile
-import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.application.ApplicationManager
-import com.intellij.openapi.progress.ProgressManager
-import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiFile
-import com.intellij.openapi.diagnostic.Logger
-import java.io.IOException
 
 class CreateTxtarFileAction : CreateFileFromTemplateAction(
     "Txtar File",
@@ -40,52 +32,21 @@ class CreateTxtarFileAction : CreateFileFromTemplateAction(
         ApplicationManager.getApplication().invokeLater {
             if (!createdElement.isValid) return@invokeLater
 
-            val descriptor = FileChooserDescriptor(true, true, false, false, false, true)
-            descriptor.title = "Select Files to Include"
+            val dialog = TxtarEntriesDialog(project, "", emptyList())
+            if (dialog.showAndGet()) {
+                val newDescription = dialog.descriptionText
+                val newEntries = dialog.getEntries()
 
-            val files = FileChooser.chooseFiles(descriptor, project, null)
-            if (files.isEmpty()) return@invokeLater
+                val content = EditTxtarEntriesAction.buildText(newDescription, newEntries)
 
-            val content = StringBuilder()
+                WriteCommandAction.runWriteCommandAction(project) {
+                    val documentManager = PsiDocumentManager.getInstance(project)
+                    val document = documentManager.getDocument(createdElement) ?: return@runWriteCommandAction
 
-            ProgressManager.getInstance().runProcessWithProgressSynchronously({
-                for (file in files) {
-                    processFile(file, "", content)
+                    // Replace the template content with the dialog content
+                    document.setText(content)
+                    documentManager.commitDocument(document)
                 }
-            }, "Reading Files to Append", true, project)
-
-            WriteCommandAction.runWriteCommandAction(project) {
-                val documentManager = PsiDocumentManager.getInstance(project)
-                val document = documentManager.getDocument(createdElement) ?: return@runWriteCommandAction
-
-                if (content.isNotEmpty()) {
-                    val length = document.textLength
-                    if (length > 0 && document.charsSequence[length - 1] != '\n') {
-                        document.insertString(length, "\n")
-                    }
-                    document.insertString(document.textLength, content)
-                }
-                documentManager.commitDocument(document)
-            }
-        }
-    }
-
-    private fun processFile(file: VirtualFile, pathPrefix: String, content: StringBuilder) {
-        val relativePath = if (pathPrefix.isEmpty()) file.name else "$pathPrefix/${file.name}"
-        if (file.isDirectory) {
-            for (child in file.children) {
-                processFile(child, relativePath, content)
-            }
-        } else {
-            try {
-                content.append("-- $relativePath --\n")
-                // Use VfsUtil.loadText to read file content
-                content.append(VfsUtil.loadText(file))
-                if (!content.endsWith("\n")) {
-                    content.append("\n")
-                }
-            } catch (e: IOException) {
-                Logger.getInstance(CreateTxtarFileAction::class.java).warn("Error reading file to append", e)
             }
         }
     }
