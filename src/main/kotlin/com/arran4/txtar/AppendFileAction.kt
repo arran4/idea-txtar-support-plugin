@@ -12,7 +12,7 @@ import java.io.IOException
 class AppendFileAction : AnAction() {
     override fun update(e: AnActionEvent) {
         val psiFile = e.getData(CommonDataKeys.PSI_FILE)
-        e.presentation.isEnabledAndVisible = psiFile is TxtarFile
+        e.presentation.isEnabledAndVisible = psiFile?.fileType is TxtarFileType
     }
 
     override fun actionPerformed(e: AnActionEvent) {

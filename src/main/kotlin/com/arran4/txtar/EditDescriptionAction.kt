@@ -46,7 +46,7 @@ class EditDescriptionAction : AnAction() {
         val psiFile = e.getData(CommonDataKeys.PSI_FILE)
         // Only visible when the current file is a TxtarFile.
         // Don't require editor specifically, right-click on project view might also apply.
-        e.presentation.isEnabledAndVisible = psiFile is TxtarFile
+        e.presentation.isEnabledAndVisible = psiFile?.fileType is TxtarFileType
     }
 
     override fun actionPerformed(e: AnActionEvent) {
