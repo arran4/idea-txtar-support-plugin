@@ -25,9 +25,14 @@ class CalculateFileSizeAction : AnAction() {
         val editor = e.getData(CommonDataKeys.EDITOR)
         val psiFile = e.getData(CommonDataKeys.PSI_FILE)
 
+        if (editor == null) {
+            e.presentation.isEnabledAndVisible = false
+            return
+        }
+
         e.presentation.isEnabledAndVisible = false
 
-        if (project != null && editor != null && psiFile != null) {
+        if (project != null && psiFile != null) {
              val offset = editor.caretModel.offset
              val element = psiFile.findElementAt(offset)
              val (header, content) = TxtarFileEntryUtil.findFileEntry(element)
