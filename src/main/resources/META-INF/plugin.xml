@@ -41,7 +41,7 @@
 
     <actions>
         <action id="Txtar.NewFile" class="com.arran4.txtar.CreateTxtarFileAction" text="Txtar File" description="Create new Txtar file">
-            <add-to-group group-id="NewGroup" anchor="before" relative-to-action="NewFile"/>
+            <add-to-group group-id="NewGroup" anchor="last"/>
         </action>
         <group id="Txtar.EditorActions" text="Txtar" popup="true">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
