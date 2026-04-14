@@ -45,6 +45,7 @@
         </action>
         <group id="Txtar.EditorActions" text="Txtar" popup="true">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
             <action id="Txtar.EditTxtarEntries" class="com.arran4.txtar.EditTxtarEntriesAction" text="Edit Txtar Entries..." description="Edit txtar entries and description"/>
             <action id="Txtar.CalculateFileSize" class="com.arran4.txtar.CalculateFileSizeAction" text="Calculate File Size" description="Calculate size of file"/>
         </group>
