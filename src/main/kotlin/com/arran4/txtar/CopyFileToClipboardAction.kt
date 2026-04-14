@@ -28,7 +28,7 @@ class CopyFileToClipboardAction : AnAction() {
 
         e.presentation.isEnabledAndVisible = false
 
-        if (project != null && editor != null && psiFile != null && psiFile.fileType is TxtarFileType) {
+        if (project != null && editor != null && psiFile != null && (e.getData(CommonDataKeys.VIRTUAL_FILE)?.extension == "txtar" || psiFile.fileType is TxtarFileType || psiFile is TxtarFile)) {
              val offset = editor.caretModel.offset
              val element = psiFile.findElementAt(offset)
              val (header, content) = TxtarFileEntryUtil.findFileEntry(element)

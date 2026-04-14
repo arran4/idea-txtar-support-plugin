@@ -9,7 +9,7 @@ import com.intellij.openapi.ui.Messages
 class AppendNewFileAction : AnAction() {
     override fun update(e: AnActionEvent) {
         val psiFile = e.getData(CommonDataKeys.PSI_FILE)
-        e.presentation.isEnabledAndVisible = psiFile?.fileType is TxtarFileType
+        e.presentation.isEnabledAndVisible = e.getData(CommonDataKeys.VIRTUAL_FILE)?.extension == "txtar" || psiFile?.fileType is TxtarFileType || psiFile is TxtarFile
     }
 
     override fun actionPerformed(e: AnActionEvent) {
