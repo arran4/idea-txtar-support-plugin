@@ -9,6 +9,16 @@ import com.intellij.openapi.ui.Messages
 import java.awt.datatransfer.DataFlavor
 
 class AppendFromClipboardAction : AnAction() {
+    override fun update(e: AnActionEvent) {
+        val project = e.project
+        val editor = e.getData(CommonDataKeys.EDITOR)
+        val psiFile = e.getData(CommonDataKeys.PSI_FILE)
+
+        e.presentation.isEnabledAndVisible = false
+        if (project == null || editor == null || psiFile !is TxtarFile) return
+        e.presentation.isEnabledAndVisible = true
+    }
+
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
         val editor = e.getData(CommonDataKeys.EDITOR) ?: return
