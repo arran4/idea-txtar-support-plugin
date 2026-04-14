@@ -58,12 +58,13 @@ class CreateTxtarFileAction : CreateFileFromTemplateAction(
                 val documentManager = PsiDocumentManager.getInstance(project)
                 val document = documentManager.getDocument(createdElement) ?: return@runWriteCommandAction
 
-                var contentStr = content.toString()
-                if (contentStr.isNotEmpty() && document.textLength > 0 && !document.text.endsWith("\n")) {
-                    contentStr = "\n$contentStr"
+                if (content.isNotEmpty()) {
+                    val length = document.textLength
+                    if (length > 0 && document.charsSequence[length - 1] != '\n') {
+                        document.insertString(length, "\n")
+                    }
+                    document.insertString(document.textLength, content)
                 }
-
-                document.insertString(document.textLength, contentStr)
                 documentManager.commitDocument(document)
             }
         }
