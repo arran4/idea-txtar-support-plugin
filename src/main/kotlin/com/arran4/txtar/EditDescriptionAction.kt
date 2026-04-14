@@ -43,13 +43,10 @@ class EditDescriptionDialog(project: Project?, initialNotes: String) : DialogWra
 
 class EditDescriptionAction : AnAction() {
     override fun update(e: AnActionEvent) {
-        val project = e.project
-        val editor = e.getData(CommonDataKeys.EDITOR)
         val psiFile = e.getData(CommonDataKeys.PSI_FILE)
-
-        e.presentation.isEnabledAndVisible = false
-        if (project == null || editor == null || psiFile !is TxtarFile) return
-        e.presentation.isEnabledAndVisible = true
+        // Only visible when the current file is a TxtarFile.
+        // Don't require editor specifically, right-click on project view might also apply.
+        e.presentation.isEnabledAndVisible = psiFile is TxtarFile
     }
 
     override fun actionPerformed(e: AnActionEvent) {
