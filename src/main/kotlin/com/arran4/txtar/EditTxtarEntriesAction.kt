@@ -6,7 +6,7 @@ import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.psi.PsiFile
 
-class ReorderFilesAction : AnAction() {
+class EditTxtarEntriesAction : AnAction() {
 
     override fun update(e: AnActionEvent) {
         val psiFile = e.getData(CommonDataKeys.PSI_FILE)
@@ -18,15 +18,16 @@ class ReorderFilesAction : AnAction() {
         val psiFile = e.getData(CommonDataKeys.PSI_FILE) as? TxtarFile ?: return
 
         // 1. Parse
-        val (commentBlock, entries) = parseFile(psiFile)
+        val (description, entries) = parseFile(psiFile)
 
         // 2. Show Dialog
-        val dialog = ReorderFilesDialog(project, entries)
+        val dialog = TxtarEntriesDialog(project, description, entries)
         if (dialog.showAndGet()) {
+            val newDescription = dialog.descriptionText
             val newEntries = dialog.getEntries()
 
             // 3. Write
-            val newText = buildText(commentBlock, newEntries)
+            val newText = buildText(newDescription, newEntries)
 
             WriteCommandAction.runWriteCommandAction(project) {
                 val document = psiFile.viewProvider.document
@@ -37,13 +38,13 @@ class ReorderFilesAction : AnAction() {
 
     companion object {
         fun parseFile(psiFile: PsiFile): Pair<String, List<TxtarEntry>> {
-            var commentBlock = ""
+            var description = ""
             val entries = mutableListOf<TxtarEntry>()
 
             val children = psiFile.children
             for (child in children) {
                 if (child.node.elementType == TxtarElementTypes.COMMENT_BLOCK) {
-                    commentBlock = child.text
+                    description = child.text
                 } else if (child.node.elementType == TxtarElementTypes.FILE_ENTRY) {
                     var headerText = ""
                     var contentText = ""
@@ -61,13 +62,21 @@ class ReorderFilesAction : AnAction() {
                     }
                 }
             }
-            return Pair(commentBlock, entries)
+            return Pair(description, entries)
         }
 
-        fun buildText(commentBlock: String, entries: List<TxtarEntry>): String {
+        fun buildText(description: String, entries: List<TxtarEntry>): String {
             val sb = StringBuilder()
-            sb.append(commentBlock)
+            if (description.isNotEmpty()) {
+                sb.append(description)
+                if (!description.endsWith("\n")) {
+                    sb.append("\n")
+                }
+            }
             for (entry in entries) {
+                if (sb.isNotEmpty() && !sb.endsWith("\n")) {
+                    sb.append("\n")
+                }
                 sb.append(entry.headerText)
                 sb.append(entry.contentText)
             }
