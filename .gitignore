@@ -3,3 +3,5 @@ build/
 .idea/
 *.iml
 out/
+/testdata/test.txtar
+/testdata/test2.txtar
