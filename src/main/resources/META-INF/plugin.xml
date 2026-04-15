@@ -3,11 +3,9 @@
     <name>Txtar</name>
     <version>1.0.3</version>
     <vendor url="https://github.com/arran4/">arran-ubels</vendor>
-
     <!-- Product and plugin compatibility requirements -->
     <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
-
     <description><![CDATA[
     Provides support for the txtar file format.
     Includes syntax highlighting, file structure folding, and editor actions for managing txtar archives.
@@ -20,7 +18,6 @@
         <li>Editor Actions: Append new file, append from external file, remove file, append from clipboard.</li>
     </ul>
     ]]></description>
-
     <extensions defaultExtensionNs="com.intellij">
         <fileType
             name="Txtar"
@@ -37,8 +34,39 @@
         <lang.foldingBuilder
             language="Txtar"
             implementationClass="com.arran4.txtar.TxtarFoldingBuilder"/>
+        <intentionAction>
+            <className>com.arran4.txtar.EditCurrentFileIntention</className>
+            <category>Txtar</category>
+        </intentionAction>
+        <intentionAction>
+            <className>com.arran4.txtar.RemoveCurrentFileIntention</className>
+            <category>Txtar</category>
+        </intentionAction>
+        <intentionAction>
+            <className>com.arran4.txtar.MoveFileUpIntention</className>
+            <category>Txtar</category>
+        </intentionAction>
+        <intentionAction>
+            <className>com.arran4.txtar.MoveFileDownIntention</className>
+            <category>Txtar</category>
+        </intentionAction>
+        <intentionAction>
+            <className>com.arran4.txtar.EditDescriptionIntention</className>
+            <category>Txtar</category>
+        </intentionAction>
+        <intentionAction>
+            <className>com.arran4.txtar.CopyFileToClipboardIntention</className>
+            <category>Txtar</category>
+        </intentionAction>
+        <intentionAction>
+            <className>com.arran4.txtar.PasteFileFromClipboardIntention</className>
+            <category>Txtar</category>
+        </intentionAction>
+        <intentionAction>
+            <className>com.arran4.txtar.CreateNewEmptyFileIntention</className>
+            <category>Txtar</category>
+        </intentionAction>
     </extensions>
-
     <actions>
         <action id="Txtar.NewFile" class="com.arran4.txtar.CreateTxtarFileAction" text="Txtar File" description="Create new Txtar file">
             <add-to-group group-id="NewGroup" anchor="last"/>

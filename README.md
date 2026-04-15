@@ -30,6 +30,15 @@ The project is currently in active development. Basic support for the `txtar` fo
   - **Remove File**: Remove the file entry at the current caret position.
   - **Append New File from Clipboard**: Paste the clipboard content as a new file entry.
 
+
+![img.png](docs/img.png)
+
+![img_1.png](docs/img_1.png)
+
+![Screenshot_20260415_201914.png](docs/Screenshot_20260415_201914.png)
+
+![Screenshot_20260415_202215.png](docs/Screenshot_20260415_202215.png)
+
 ## Installation
 
 **From Marketplace:**
