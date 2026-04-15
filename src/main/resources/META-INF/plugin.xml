@@ -34,6 +34,38 @@
         <lang.foldingBuilder
             language="Txtar"
             implementationClass="com.arran4.txtar.TxtarFoldingBuilder"/>
+        <intentionAction>
+            <className>com.arran4.txtar.EditCurrentFileIntention</className>
+            <category>Txtar</category>
+        </intentionAction>
+        <intentionAction>
+            <className>com.arran4.txtar.RemoveCurrentFileIntention</className>
+            <category>Txtar</category>
+        </intentionAction>
+        <intentionAction>
+            <className>com.arran4.txtar.MoveFileUpIntention</className>
+            <category>Txtar</category>
+        </intentionAction>
+        <intentionAction>
+            <className>com.arran4.txtar.MoveFileDownIntention</className>
+            <category>Txtar</category>
+        </intentionAction>
+        <intentionAction>
+            <className>com.arran4.txtar.EditDescriptionIntention</className>
+            <category>Txtar</category>
+        </intentionAction>
+        <intentionAction>
+            <className>com.arran4.txtar.CopyFileToClipboardIntention</className>
+            <category>Txtar</category>
+        </intentionAction>
+        <intentionAction>
+            <className>com.arran4.txtar.PasteFileFromClipboardIntention</className>
+            <category>Txtar</category>
+        </intentionAction>
+        <intentionAction>
+            <className>com.arran4.txtar.CreateNewEmptyFileIntention</className>
+            <category>Txtar</category>
+        </intentionAction>
     </extensions>
     <actions>
         <action id="Txtar.NewFile" class="com.arran4.txtar.CreateTxtarFileAction" text="Txtar File" description="Create new Txtar file">
