@@ -10,12 +10,19 @@ class EditTxtarEntriesAction : AnAction() {
 
     override fun update(e: AnActionEvent) {
         val psiFile = e.getData(CommonDataKeys.PSI_FILE)
-        e.presentation.isEnabledAndVisible = psiFile is TxtarFile
+        val virtualFile = e.getData(CommonDataKeys.VIRTUAL_FILE)
+        val isTxtar = psiFile?.fileType == TxtarFileType.INSTANCE || virtualFile?.extension == "txtar"
+        e.presentation.isEnabledAndVisible = isTxtar
     }
 
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
-        val psiFile = e.getData(CommonDataKeys.PSI_FILE) as? TxtarFile ?: return
+        var psiFile = e.getData(CommonDataKeys.PSI_FILE)
+        if (psiFile == null) {
+            val virtualFile = e.getData(CommonDataKeys.VIRTUAL_FILE) ?: return
+            psiFile = com.intellij.psi.PsiManager.getInstance(project).findFile(virtualFile)
+        }
+        if (psiFile == null) return
 
         // 1. Parse
         val (description, entries) = parseFile(psiFile)

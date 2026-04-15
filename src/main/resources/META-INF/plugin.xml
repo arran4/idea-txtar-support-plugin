@@ -3,11 +3,9 @@
     <name>Txtar</name>
     <version>1.0.3</version>
     <vendor url="https://github.com/arran4/">arran-ubels</vendor>
-
     <!-- Product and plugin compatibility requirements -->
     <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
-
     <description><![CDATA[
     Provides support for the txtar file format.
     Includes syntax highlighting, file structure folding, and editor actions for managing txtar archives.
@@ -20,7 +18,6 @@
         <li>Editor Actions: Append new file, append from external file, remove file, append from clipboard.</li>
     </ul>
     ]]></description>
-
     <extensions defaultExtensionNs="com.intellij">
         <fileType
             name="Txtar"
@@ -38,15 +35,14 @@
             language="Txtar"
             implementationClass="com.arran4.txtar.TxtarFoldingBuilder"/>
     </extensions>
-
     <actions>
         <action id="Txtar.NewFile" class="com.arran4.txtar.CreateTxtarFileAction" text="Txtar File" description="Create new Txtar file">
             <add-to-group group-id="NewGroup" anchor="last"/>
         </action>
-        <group id="Txtar.EditorActions" text="Txtar" popup="true">
+        <group id="Txtar.EditorActions" text="Txtar" popup="false">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
             <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
-            <action id="Txtar.EditTxtarEntries" class="com.arran4.txtar.EditTxtarEntriesAction" text="Edit Txtar Entries..." description="Edit txtar entries and description"/>
+            <action id="Txtar.EditTxtarEntries" class="com.arran4.txtar.EditTxtarEntriesAction" text="Edit Txtar" description="Edit txtar entries and description"/>
             <action id="Txtar.CalculateFileSize" class="com.arran4.txtar.CalculateFileSizeAction" text="Calculate File Size" description="Calculate size of file"/>
         </group>
     </actions>
