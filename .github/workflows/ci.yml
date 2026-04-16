@@ -283,11 +283,11 @@ jobs:
       - name: Decode signing materials
         shell: bash
         run: |
-          echo "${{ secrets.CERTIFICATE_CHAIN_B64 }}" | base64 -d > /tmp/chain.crt
-          echo "${{ secrets.PRIVATE_KEY_B64 }}" | base64 -d > /tmp/private.pem
+          echo "${{ secrets.JB_CERTIFICATE_CHAIN_B64 }}" | base64 -d > /tmp/chain.crt
+          echo "${{ secrets.JB_PRIVATE_KEY_B64 }}" | base64 -d > /tmp/private.pem
       - name: Publish to JetBrains Marketplace
         env:
-          PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+          PUBLISH_TOKEN: ${{ secrets.JB_PUBLISH_TOKEN }}
           CERTIFICATE_CHAIN: /tmp/chain.crt
           PRIVATE_KEY: /tmp/private.pem
           # The publish plugin task relies on GITHUB_REF_NAME by default.
