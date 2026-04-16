@@ -288,12 +288,14 @@ jobs:
       - name: Publish to JetBrains Marketplace
         env:
           PUBLISH_TOKEN: ${{ secrets.JB_PUBLISH_TOKEN }}
-          CERTIFICATE_CHAIN: /tmp/chain.crt
-          PRIVATE_KEY: /tmp/private.pem
+          PRIVATE_KEY_PASSWORD: ${{ secrets.JB_PRIVATE_KEY_PASSWORD }}
           # The publish plugin task relies on GITHUB_REF_NAME by default.
           # We need to simulate it for manual releases or just use it.
           GITHUB_REF_NAME: ${{ needs.prepare-release-tag.outputs.release_tag || github.ref_name }}
-        run: ./gradlew publishPlugin
+        run: |
+          export CERTIFICATE_CHAIN="$(cat /tmp/chain.crt)"
+          export PRIVATE_KEY="$(cat /tmp/private.pem)"
+          ./gradlew publishPlugin
 
   manual-gh-release:
     name: Manual release creation
