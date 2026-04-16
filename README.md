@@ -25,10 +25,17 @@ The project is currently in active development. Basic support for the `txtar` fo
 - **Syntax Highlighting**: Basic syntax highlighting for `txtar` archives.
 - **Folding**: Code folding support for file entries in the archive.
 - **Editor Actions**:
-  - **Append New File**: Quickly add a new file entry to the archive.
-  - **Append File...**: Append the content of an external file to the archive.
-  - **Remove File**: Remove the file entry at the current caret position.
-  - **Append New File from Clipboard**: Paste the clipboard content as a new file entry.
+  - **Edit Txtar**: A unified dialog to manipulate existing Txtar file entries (append, remove, reorder, preview). Available from Editor and Project View context menus.
+  - **Calculate File Size**: Calculate the size of the current txtar file.
+- **Intention Actions** (Alt+Enter):
+  - Edit current file contents.
+  - Remove current file.
+  - Move file up or down.
+  - Edit file description.
+  - Copy file to clipboard or paste from clipboard.
+  - Create new empty file.
+- **Project Actions**:
+  - Create new `Txtar File` via the File > New menu.
 
 
 ![img.png](docs/img.png)
