@@ -52,9 +52,18 @@ tasks {
     }
 
     signPlugin {
-        certificateChainFile.set(layout.projectDirectory.file(System.getenv("CERTIFICATE_CHAIN_FILE")))
-        privateKeyFile.set(layout.projectDirectory.file(System.getenv("PRIVATE_KEY_FILE")))
-        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
+        val certFile = providers.environmentVariable("CERTIFICATE_CHAIN_FILE")
+        val keyFile = providers.environmentVariable("PRIVATE_KEY_FILE")
+        val pass = providers.environmentVariable("PRIVATE_KEY_PASSWORD")
+
+        if (certFile.isPresent && keyFile.isPresent) {
+            certificateChainFile.set(file(certFile.get()))
+            privateKeyFile.set(file(keyFile.get()))
+
+            if (pass.isPresent) {
+                password.set(pass)
+            }
+        }
     }
 
     publishPlugin {
