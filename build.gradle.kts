@@ -6,7 +6,12 @@ plugins {
 
 group = "com.arran4.txtar"
 val pluginVersion: String by project
-version = providers.environmentVariable("GITHUB_REF_NAME").getOrNull()?.removePrefix("v")?.replace("/", "-") ?: pluginVersion
+val githubRefName = providers.environmentVariable("GITHUB_REF_NAME").getOrNull()
+version = if (githubRefName != null && githubRefName.startsWith("v") && githubRefName.getOrNull(1)?.isDigit() == true) {
+    githubRefName.removePrefix("v")
+} else {
+    pluginVersion
+}
 
 repositories {
     mavenCentral()

@@ -80,4 +80,9 @@
             <action id="Txtar.CalculateFileSize" class="com.arran4.txtar.CalculateFileSizeAction" text="Calculate File Size" description="Calculate size of file"/>
         </group>
     </actions>
+    <change-notes><![CDATA[
+        <ul>
+            <li>Fix: Ensure plugin version satisfies SemVer by only using version tags starting with 'v' and a digit.</li>
+        </ul>
+    ]]></change-notes>
 </idea-plugin>
