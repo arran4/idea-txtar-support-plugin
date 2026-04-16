@@ -355,9 +355,10 @@ jobs:
             sed -i "s/<version>.*<\/version>/<version>$NEXT_VERSION<\/version>/" src/main/resources/META-INF/plugin.xml
           fi
 
-          echo "- Unreleased" > CHANGELOG.md
-
-          git add gradle.properties src/main/resources/META-INF/plugin.xml CHANGELOG.md
+          git add gradle.properties src/main/resources/META-INF/plugin.xml
           git commit -m "Prepare next development iteration $NEXT_VERSION"
           git push -u origin "$BRANCH"
-          gh pr create --title "Prepare next development iteration $NEXT_VERSION" --body "Automated PR for next iteration." --base main --head "$BRANCH"
+          # Try to create PR using GITHUB_TOKEN; if it fails, instruct the user to check permissions.
+          gh pr create --title "Prepare next development iteration $NEXT_VERSION" --body "Automated PR for next iteration." --base main --head "$BRANCH" || {
+            echo "::warning:: Failed to create PR. Please ensure 'Allow GitHub Actions to create and approve pull requests' is enabled in Settings -> Actions -> General."
+          }
