@@ -285,6 +285,8 @@ jobs:
         run: |
           echo "${{ secrets.JB_CERTIFICATE_CHAIN_B64 }}" | base64 -d > /tmp/chain.crt
           echo "${{ secrets.JB_PRIVATE_KEY_B64 }}" | base64 -d > /tmp/private.pem
+          chmod 600 /tmp/private.pem /tmp/chain.crt
+          ls -lh /tmp/private.pem /tmp/chain.crt
       - name: Publish to JetBrains Marketplace
         env:
           PUBLISH_TOKEN: ${{ secrets.JB_PUBLISH_TOKEN }}
