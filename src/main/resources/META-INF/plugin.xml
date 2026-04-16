@@ -1,7 +1,7 @@
 <idea-plugin url="https://github.com/arran4/idea-txtar-support-plugin">
     <id>com.arran4.txtar</id>
     <name>Txtar</name>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <vendor url="https://github.com/arran4/">arran-ubels</vendor>
     <!-- Product and plugin compatibility requirements -->
     <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
@@ -15,7 +15,9 @@
         <li>File Type Recognition: Automatically recognizes .txtar files.</li>
         <li>Syntax Highlighting: Basic syntax highlighting for txtar archives.</li>
         <li>Folding: Code folding support for file entries in the archive.</li>
-        <li>Editor Actions: Append new file, append from external file, remove file, append from clipboard.</li>
+        <li>Editor Actions: Unified dialog to edit Txtar file entries (append, remove, reorder, preview), and calculate file size. Available from Editor and Project View context menus.</li>
+        <li>Intention Actions (Alt+Enter): Edit current file contents, remove current file, move file up or down, edit file description, copy to/paste from clipboard, create new empty file.</li>
+        <li>Project Actions: Create new Txtar File via the File &gt; New menu.</li>
     </ul>
     ]]></description>
     <extensions defaultExtensionNs="com.intellij">
