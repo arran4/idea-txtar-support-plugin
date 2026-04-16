@@ -15,7 +15,7 @@
         <li>File Type Recognition: Automatically recognizes .txtar files.</li>
         <li>Syntax Highlighting: Basic syntax highlighting for txtar archives.</li>
         <li>Folding: Code folding support for file entries in the archive.</li>
-        <li>Editor Actions: Unified dialog to edit Txtar file entries (append, remove, reorder, preview), and calculate file size. Available from Editor and Project View context menus.</li>
+        <li>Editor Actions: Unified dialog to edit Txtar file entries (append, remove, reorder, preview), and an action to calculate file size. Both are available from Editor and Project View context menus.</li>
         <li>Intention Actions (Alt+Enter): Edit current file contents, remove current file, move file up or down, edit file description, copy to/paste from clipboard, create new empty file.</li>
         <li>Project Actions: Create new Txtar File via the File &gt; New menu.</li>
     </ul>
