@@ -23,7 +23,9 @@ intellij {
     pluginName.set("txtar-support")
     version.set("2023.2.5")
     type.set("IC") // Target IDE Platform
-    plugins.set(listOf(/* Plugin Dependencies */))
+    plugins.set(listOf(
+        "org.intellij.intelliLang",
+    ))
 }
 
 configurations {

@@ -68,6 +68,9 @@
             <className>com.arran4.txtar.CreateNewEmptyFileIntention</className>
             <category>Txtar</category>
         </intentionAction>
+        <languageInjectionContributor language="Txtar" implementationClass="com.arran4.txtar.FileInjector"/>
+        <lang.elementManipulator forClass="com.arran4.txtar.FileElement"
+                                 implementationClass="com.arran4.txtar.FileElement$Manipulator"/>
     </extensions>
     <actions>
         <action id="Txtar.NewFile" class="com.arran4.txtar.CreateTxtarFileAction" text="Txtar File" description="Create new Txtar file">

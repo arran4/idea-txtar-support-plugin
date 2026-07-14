@@ -59,7 +59,12 @@ class TxtarParserDefinition : ParserDefinition {
 
     override fun getStringLiteralElements(): TokenSet = TokenSet.EMPTY
 
-    override fun createElement(node: ASTNode): PsiElement = ASTWrapperPsiElement(node)
+    override fun createElement(node: ASTNode): PsiElement {
+        if (node.elementType == TxtarElementTypes.FILE_CONTENT) {
+            return FileElement(node)
+        }
+        return ASTWrapperPsiElement(node)
+    }
 
     override fun createFile(viewProvider: FileViewProvider): PsiFile = TxtarFile(viewProvider)
 }
