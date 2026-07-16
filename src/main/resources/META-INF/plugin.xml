@@ -33,6 +33,8 @@
         <lang.syntaxHighlighterFactory
             language="Txtar"
             implementationClass="com.arran4.txtar.TxtarSyntaxHighlighterFactory"/>
+        <colorSettingsPage
+            implementation="com.arran4.txtar.ColorSettingsPage"/>
         <lang.foldingBuilder
             language="Txtar"
             implementationClass="com.arran4.txtar.TxtarFoldingBuilder"/>
