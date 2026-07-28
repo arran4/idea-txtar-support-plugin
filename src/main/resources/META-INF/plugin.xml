@@ -36,6 +36,18 @@
         <lang.foldingBuilder
             language="Txtar"
             implementationClass="com.arran4.txtar.TxtarFoldingBuilder"/>
+        <fileType
+                name="Testscript"
+                implementationClass="com.arran4.testscript.TestscriptFileType"
+                fieldName="INSTANCE"
+                language="Testscript"
+                extensions="txt"/>
+        <lang.parserDefinition
+            language="Testscript"
+            implementationClass="com.arran4.testscript.TestscriptParserDefinition"/>
+        <lang.syntaxHighlighterFactory
+            language="Testscript"
+            implementationClass="com.arran4.testscript.TestscriptSyntaxHighlighterFactory"/>
         <intentionAction>
             <className>com.arran4.txtar.EditCurrentFileIntention</className>
             <category>Txtar</category>
@@ -68,6 +80,9 @@
             <className>com.arran4.txtar.CreateNewEmptyFileIntention</className>
             <category>Txtar</category>
         </intentionAction>
+        <languageInjectionContributor language="Testscript" implementationClass="com.arran4.testscript.TestscriptTxtarFilesInjector"/>
+        <lang.elementManipulator forClass="com.arran4.testscript.TestscriptTxtarFilesElement"
+                                 implementationClass="com.arran4.testscript.TestscriptTxtarFilesElement$Manipulator"/>
     </extensions>
     <actions>
         <action id="Txtar.NewFile" class="com.arran4.txtar.CreateTxtarFileAction" text="Txtar File" description="Create new Txtar file">
